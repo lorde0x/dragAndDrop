@@ -5,7 +5,8 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass', '~> 3.3.1'
 #Bootstrap Autoprefixer
 gem 'autoprefixer-rails'
-
+# Internationalization
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.2'
 # Use sqlite3 as the database for Active Record
