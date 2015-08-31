@@ -23,12 +23,10 @@
 		<%= f.label :password_confirmation %><br />
 		<%= f.password_field :password_confirmation, autocomplete: "off" %>
 	  </div>
-	  <! the following div causes error: how render a boolean?>
-	  <div class="field">
+	<div class="field">
 		<%= f.label :rule %><br />
-		<%= f.rule_field :rule, autocomplete: "off" %>
-	  </div>
-
+		<%= f.select :rule, [['Driver', true], ['Sender', false]] %>
+	</div>	
 	  <div class="actions">
 		<%= f.submit "Sign up" %>
 	  </div>
