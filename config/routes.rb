@@ -1,33 +1,39 @@
 Rails.application.routes.draw do
-	get 'home/index'
+	resources :travels
+	resources :boxes
 	resources :users, path: '/portal' 
-
+	get 'search_travel' => 'home#search_travel'
+	get 'search_boxes' => 'home#search_boxes'
+	
 	devise_for :admins
+		devise_scope :admin do
+			authenticated :admin do
+				get 'admins/sign_out' => 'devise/sessions#destroy'
+			end
 
-	devise_scope :admin do
-		authenticated :admin do
-			get 'admins/sign_out' => 'devise/sessions#destroy'
+			unauthenticated do
+				get 'admins/sign_in' => 'devise/sessions#new'
+			end
 		end
-
-		unauthenticated do
-			get 'admins/sign_in' => 'devise/sessions#new'
-		end
-	end
 	
-	devise_for :users
-	
-	devise_scope :user do
-		authenticated :user do
-			get '/users' => 'devise/registrations#edit'
-			get 'users/sign_out' => 'devise/sessions#destroy'
-		    root to: 'home#index', as: :authenticated_root
+	devise_for :users 	
+		devise_scope :user do
+			authenticated :user do
+				# get "travels_registration" => 'registrations#travels_registration', as: :travels_registration
+				get '/users' => 'devise/registrations#edit'
+				get 'users/sign_out' => 'devise/sessions#destroy'
+				root to: 'home#index', as: :authenticated_root
+			end
+			unauthenticated do
+				#get "travels_registration" => 'registrations#travels_registration', as: :travels_registration
+				# get "travels_registration" => 'devise/registrations#travels_registration'
+				# post "/travels_registration.user" => 'devise/registrations#travels_registration'
+				get 'users/sign_up' => 'devise/registrations#new'
+				get 'users/sign_in' => 'devise/sessions#new'
+				get '/users' => 'devise/registrations#new'
+				root to: 'home#index', as: :unauthenticated_root
+			end
 		end
-		unauthenticated do
-			get 'users/sign_in' => 'devise/sessions#new'
-			get '/users' => 'devise/registrations#new'
-			root to: 'home#index', as: :unauthenticated_root
-		end
-	end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

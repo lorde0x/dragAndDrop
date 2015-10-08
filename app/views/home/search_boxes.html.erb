@@ -1,0 +1,40 @@
+<%= content_for :body do %>
+<h1>Listing boxs</h1>
+<thead>
+<table>
+  <th>Dep address</th>
+      <th>Dep lat</th>
+      <th>Dep lng</th>
+      <th>Stage address</th>
+      <th>Stage lat</th>
+      <th>Stage lng</th>
+      <th>Arr address</th>
+      <th>Arr lat</th>
+      <th>Arr lng</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% if @boxes.nil? %>
+  	<p> Non ci sono pacchi</p>
+  	<% else %>
+    <% @boxes.uniq.each do |box| %>
+      <tr>
+        <td><%= box.dep_address %></td>
+        <td><%= box.dep_lat %></td>
+        <td><%= box.dep_long %></td>
+        <td><%= box.arr_address %></td>
+        <td><%= box.arr_lat %></td>
+        <td><%= box.arr_long %></td>
+        <td><%= link_to 'Show', box %></td>
+        <td><%= link_to 'Edit', edit_box_path(box) %></td>
+        <td><%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% end %>

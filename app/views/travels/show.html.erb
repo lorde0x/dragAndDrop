@@ -1,0 +1,62 @@
+<%=content_for :body do %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dep address:</strong>
+  <%= @travel.dep_address %>
+</p>
+
+<p>
+  <strong>Stage address:</strong>
+  <%= @travel.stage_address %>
+</p>
+
+<p>
+  <strong>Arr address:</strong>
+  <%= @travel.arr_address %>
+</p>
+
+
+<p>
+  <strong>Dep time:</strong>
+  <%= @travel.dep_time %>
+</p>
+
+<p>
+  <strong>Arr time:</strong>
+  <%= @travel.arr_time %>
+</p>
+
+<p>
+  <strong>Stage time:</strong>
+  <%= @travel.stage_time %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @travel.distance %>
+</p>
+
+<p>
+  <strong>Full time:</strong>
+  <%= @travel.time %>
+</p>
+
+<p>
+  <strong>semi distance:</strong>
+  <%= @travel.semi_distance %>
+</p>
+
+<p>
+  <strong>distance:</strong>
+  <%= @travel.distance %>
+</p>
+
+<p>
+  <strong>semi time:</strong>
+  <%= @travel.way %>
+</p>
+
+<%= link_to 'Edit', edit_travel_path(@travel) %> |
+<%= link_to 'Back', travels_path %>
+<% end %>

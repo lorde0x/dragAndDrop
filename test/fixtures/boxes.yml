@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  weight: 1.5
+  description: MyString
+  image: MyString
+  departure_address: MyString
+  departure_long: MyString
+  departure_lat: MyString
+  arr_address: MyString
+  arr_lat: MyString
+  arr_long: MyString
+  expiration: 2015-09-26 13:16:06
+
+two:
+  user_id: 
+  weight: 1.5
+  description: MyString
+  image: MyString
+  departure_address: MyString
+  departure_long: MyString
+  departure_lat: MyString
+  arr_address: MyString
+  arr_lat: MyString
+  arr_long: MyString
+  expiration: 2015-09-26 13:16:06

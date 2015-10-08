@@ -28,11 +28,19 @@
 	  <div class="field">
 		<%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
 		<%= f.password_field :current_password, autocomplete: "off" %>
+	  </div>	
+	   <div class="field">
+		<%= f.label :phone_number %><br />
+		<%= f.text_field :phone_number %>
 	  </div>
-	<div class="field">
-		<%= f.label :rule %><br />
-		<%= f.select :rule, [['Driver', true], ['Sender', false]] %>
-	</div>	
+	   <div class="field">
+		<%= f.label :image %><br />
+		<%= f.text_field :image %>
+	  </div>
+	   <div class="field">
+		<%= f.label :identity_card %><br />
+		<%= f.text_field :identity_card %>
+	  </div>
 	  <div class="actions">
 		<%= f.submit "Update" %>
 	  </div>

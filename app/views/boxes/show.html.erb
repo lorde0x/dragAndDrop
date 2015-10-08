@@ -1,0 +1,62 @@
+<%= content_for :body do %>
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Weight:</strong>
+  <%= @box.weight %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @box.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @box.image %>
+</p>
+
+<p>
+  <strong>Departure address:</strong>
+  <%= @box.dep_address %>
+</p>
+
+<p>
+  <strong>Departure long:</strong>
+  <%= @box.dep_long %>
+</p>
+
+<p>
+  <strong>Departure lat:</strong>
+  <%= @box.dep_lat %>
+</p>
+
+<p>
+  <strong>Arr address:</strong>
+  <%= @box.arr_address %>
+</p>
+
+<p>
+  <strong>Arr lat:</strong>
+  <%= @box.arr_lat %>
+</p>
+
+<p>
+  <strong>Arr long:</strong>
+  <%= @box.arr_long %>
+</p>
+
+<p>
+  <strong>Expiration:</strong>
+  <%= @box.expiration %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @box.distance %>
+</p>
+
+<%= link_to 'Edit', edit_box_path(@box) %> |
+<%= link_to 'Back', boxes_path %>
+<% end %>
