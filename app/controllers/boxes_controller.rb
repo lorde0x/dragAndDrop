@@ -1,6 +1,7 @@
 class BoxesController < ApplicationController
   before_action :set_box, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  rescue_from NoMethodError, with: :show_errors
 
   # GET /boxes
   # GET /boxes.json
@@ -72,5 +73,10 @@ class BoxesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def box_params
       params.require(:box).permit(:user_id, :weight, :description, :image, :dep_address, :dep_long, :dep_lat, :arr_address, :arr_lat, :arr_long, :expiration, :distance)
+    end
+
+    def show_errors
+      redirect_to :back
+      flash[:notice] = 'Qualcosa è andato storta, prova di nuovo!'
     end
 end

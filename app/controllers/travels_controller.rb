@@ -1,6 +1,7 @@
 class TravelsController < ApplicationController
 	before_action :set_travel, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
+	rescue_from NoMethodError, with: :show_errors
 
 	# GET /travels
 	# GET /travels.json
@@ -29,7 +30,7 @@ class TravelsController < ApplicationController
 	@travel.user_id = current_user.id
 	
 		respond_to do |format|
-			if @travel.save
+			if  @travel.save
 				format.html { redirect_to search_boxes_url, notice: 'Travel was successfully created.' }
 				format.json { render :show, status: :created, location: @travel }
 			else
@@ -65,12 +66,17 @@ class TravelsController < ApplicationController
 
 	private
 	# Use callbacks to share common setup or constraints between actions.
-	def set_travel
-		@travel = Travel.find(params[:id])
-	end
+		def set_travel
+			@travel = Travel.find(params[:id])
+		end
 
-	# Never trust parameters from the scary internet, only allow the white list through.
-	def travel_params
-		params.require(:travel).permit(:user_id, :dep_address, :dep_lat, :dep_lng, :stage_address, :stage_lat, :stage_lng, :arr_address, :arr_lat, :arr_lng, :dep_time, :arr_time, :stage_time, :semi_distance, :semi_time, :distance, :time, :way)
-	end
+		# Never trust parameters from the scary internet, only allow the white list through.
+		def travel_params
+			params.require(:travel).permit(:user_id, :dep_address, :dep_lat, :dep_lng, :stage_address, :stage_lat, :stage_lng, :arr_address, :arr_lat, :arr_lng, :dep_time, :arr_time, :stage_time, :semi_distance, :semi_time, :distance, :time, :way)
+		end
+
+		def show_errors
+			redirect_to :back
+			flash[:notice] = 'Qualcosa è andato storta, prova di nuovo!'
+		end
 end
