@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  resources :accounts
 	resources :travels
 	resources :boxes
 	resources :users, path: '/portal' 
 	get 'search_travel' => 'home#search_travel'
 	get 'search_boxes' => 'home#search_boxes'
+  post 'contact' => 'boxes#contact_traveler'
+  root to: 'home#index'
 	
 	devise_for :admins
 		devise_scope :admin do
@@ -16,18 +19,14 @@ Rails.application.routes.draw do
 			end
 		end
 	
-	devise_for :users 	
+	devise_for :users, :controllers => { registrations: 'registrations' }
 		devise_scope :user do
 			authenticated :user do
-				# get "travels_registration" => 'registrations#travels_registration', as: :travels_registration
 				get '/users' => 'devise/registrations#edit'
 				get 'users/sign_out' => 'devise/sessions#destroy'
-				root to: 'home#index', as: :authenticated_root
+			  root to: 'home#index', as: :authenticated_root
 			end
 			unauthenticated do
-				#get "travels_registration" => 'registrations#travels_registration', as: :travels_registration
-				# get "travels_registration" => 'devise/registrations#travels_registration'
-				# post "/travels_registration.user" => 'devise/registrations#travels_registration'
 				get 'users/sign_up' => 'devise/registrations#new'
 				get 'users/sign_in' => 'devise/sessions#new'
 				get '/users' => 'devise/registrations#new'

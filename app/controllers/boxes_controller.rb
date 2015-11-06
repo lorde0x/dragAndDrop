@@ -1,7 +1,7 @@
 class BoxesController < ApplicationController
   before_action :set_box, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  rescue_from NoMethodError, with: :show_errors
+  #rescue_from NoMethodError, with: :show_errors
 
   # GET /boxes
   # GET /boxes.json
@@ -27,12 +27,12 @@ class BoxesController < ApplicationController
   # POST /boxes.json
   def create
     @box = Box.new(box_params)
-	@box.user_id = current_user.id
+	  @box.user_id = current_user.id
 	
     respond_to do |format|
       if @box.save
-        format.html { redirect_to search_travel_path, notice: 'Box was successfully created.' }
-        format.json { render :show, status: :created, location: @box }
+        format.html { render :edit, notice: 'Box was successfully created.' }
+        format.json { render :edit, status: :created, location: @box }
       else
         format.html { render :new }
         format.json { render json: @box.errors, status: :unprocessable_entity }
@@ -64,7 +64,14 @@ class BoxesController < ApplicationController
     end
   end
 
+  def contact_traveler
+    @user = current_user
+    Mailer.contact_traveler(params[:user_id], @user).deliver_later
+    redirect_to :back
+  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_box
       @box = Box.find(params[:id])
@@ -72,7 +79,7 @@ class BoxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def box_params
-      params.require(:box).permit(:user_id, :weight, :description, :image, :dep_address, :dep_long, :dep_lat, :arr_address, :arr_lat, :arr_long, :expiration, :distance)
+      params.require(:box).permit(:user_id, :weight, :description, :image, :dep_address, :dep_long, :dep_lat, :arr_address, :arr_lat, :arr_long, :expiration, :distance, :price)
     end
 
     def show_errors

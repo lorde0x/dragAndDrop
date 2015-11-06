@@ -13,6 +13,7 @@ class CreateBoxes < ActiveRecord::Migration
       t.string :arr_long
       t.datetime :expiration
       t.float :distance
+      t.float :price
 
       t.timestamps null: false
     end

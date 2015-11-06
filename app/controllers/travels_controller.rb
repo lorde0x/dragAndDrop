@@ -1,7 +1,7 @@
 class TravelsController < ApplicationController
 	before_action :set_travel, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
-	rescue_from NoMethodError, with: :show_errors
+	#rescue_from NoMethodError, with: :show_errors
 
 	# GET /travels
 	# GET /travels.json
@@ -31,7 +31,7 @@ class TravelsController < ApplicationController
 	
 		respond_to do |format|
 			if  @travel.save
-				format.html { redirect_to search_boxes_url, notice: 'Travel was successfully created.' }
+				format.html { redirect_to travels_path, notice: 'Travel was successfully created.' }
 				format.json { render :show, status: :created, location: @travel }
 			else
 				format.html { render :new }

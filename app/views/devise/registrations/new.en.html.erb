@@ -35,12 +35,6 @@
 		<%= f.label :password_confirmation %><br />
 		<%= f.password_field :password_confirmation, autocomplete: "off" %>
 	  </div>	
-	  <% if user_signed_in? and current_user.permission_level == 100 %>
-	    <div class="field">
-		<%= f.label :phone_number %><br />
-		<%= f.text_field :phone_number %>
-	  </div>
-	  	<% end %>
 	  <div class="actions">
 		<%= f.submit "Sign up" %>
 	  </div>

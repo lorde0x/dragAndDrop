@@ -1,9 +1,24 @@
 class Box < ActiveRecord::Base
+	mount_uploader :image, ImageUploader
 	belongs_to :user
   	geocoded_by :address
 	after_validation :geocode, if: ->(obj){ obj.dep_address.present? and obj.arr_address.present? }
-	
+	after_validation :check_price
+
+
 	private
+	
+	def check_price
+		if weight < 10 && distance < 100
+			price = 8
+		elsif weight < 15 && distance < 200
+			price = 15
+		elsif weight < 20 && distance < 300
+			price = 25
+		elsif weight > 19 && distance > 299
+			price = 30	
+		end
+	end
 	
 	def address
 		dep_coordinates = Geocoder.search(self.dep_address)

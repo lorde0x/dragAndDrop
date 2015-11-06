@@ -22,7 +22,7 @@
   </div>
   <div class="field">
     <%= f.label :image %><br>
-    <%= f.file_field :image, multiple: true %>
+    <%= f.file_field :image %>
   </div>
   <div class="field">
     <%= f.label :dep_address %><br>
@@ -36,9 +36,6 @@
     <%= f.label :expiration %><br>
     <%= f.datetime_select :expiration %>
   </div>
-      <div class="field">
-    <%= f.label :distance %><br>
-    <%= f.text_field :distance %>
   </div>
   <div class="actions">
     <%= f.submit %>

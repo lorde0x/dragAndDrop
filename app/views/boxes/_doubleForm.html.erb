@@ -1,0 +1,22 @@
+<%= content_for :body do %>
+  <%= form_for(@box) do |f| %>
+    <% if @box.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@box.errors.count, "error") %> prohibited this box from being saved:</h2>
+
+        <ul>
+        <% @box.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.text_field :price %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>

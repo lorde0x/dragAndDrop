@@ -1,0 +1,21 @@
+<%= content_for :body do %>
+	<p id="notice"><%= notice %></p>
+
+	<p>
+	  <strong>Image:</strong>
+	  <%= @account.image %>
+	</p>
+
+	<p>
+	  <strong>Phone number:</strong>
+	  <%= @account.phone_number %>
+	</p>
+
+	<p>
+	  <strong>Identity card:</strong>
+	  <%= @account.identity_card %>
+	</p>
+
+	<%= link_to 'Edit', edit_account_path(@account) %> |
+	<%= link_to 'Back', accounts_path %>
+<% end %>

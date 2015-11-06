@@ -35,6 +35,7 @@
         <td><%= box.arr_long %></td>
         <td><%= box.expiration %></td>
         <td><%= box.distance %></td>
+        <td><%= button_to "Contact", action: "contact_traveler", user_id: box.user_id  %></td>
         <td><%= link_to 'Show', box %></td>
         <td><%= link_to 'Edit', edit_box_path(box) %></td>
         <td><%= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' } %></td>
